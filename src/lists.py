@@ -69,5 +69,3 @@ class List:
 
     def rowMajor(self, x, y, maxY):
         return x + y * maxY              
-
-            

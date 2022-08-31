@@ -1,22 +1,20 @@
+
 from object import Pacient, Grids
 from lists import List, Node
 import simulation, diagnostic
+import os
 
-#global infected
-#infected = []
-#
-def evaluateMatrix(m, matrix, periods):
+def evaluateMatrix( m, matrix, periods, pacient): #next
 
-    #print("Periodos : ", periods)
+    graphviz = ""
 
     for n in range(periods):
 
-        infected = []
+        grid = []
 
         for i in range(m):
             for j in range(m):
 
-                #print("Celda actual: ",i,",",j,")", matrix.getCell(i,j,m), "\n")
 
                 actualCell = matrix.getCell(i,j,m)
 
@@ -34,20 +32,28 @@ def evaluateMatrix(m, matrix, periods):
                 #print("Las celulas infectadas son: ", evaluateCells(neighbor1,neighbor2,neighbor3,neighbor4,neighbor5,neighbor6,neighbor7,neighbor8),"\n")
                 sickCells = evaluateCells(neighbor1,neighbor2,neighbor3,neighbor4,neighbor5,neighbor6,neighbor7,neighbor8)
 
-                c = evaluateSicks(actualCell, sickCells, matrix, m , i, j)
+                evaluateSicks(actualCell, sickCells, matrix, m , i, j)
                 #print("Infectado: ", c,"\n")
             
-        infecteCells(matrix, m, infected)
+        infecteCells(matrix, m, grid)
 
         simulation.printPeriods(matrix, m, n)  
+        
+        results = Grids.compareGrids(n+1, grid, pacient)   
 
-        #print("Posiciones infectadas: ")
-        #print(infected)
+        graphicMatrix(matrix, m, str(n+1))
 
-        Grids.addGrids(n+1, infected)  
+        if results[0] == "Enfermedad MORTAL":
+            
+            break
 
-        #diagnostic.saveInfected(infected )
-              
+        Grids.addGrids(n+1, grid, pacient)  
+
+
+    print("Periodos: ", results[1], results[2])
+
+    Pacient.editResults(pacient, results[0], results[1], results[2])
+
 
 def evaluateCells(neighbor1,neighbor2,neighbor3,neighbor4,neighbor5,neighbor6,neighbor7,neighbor8):
 
@@ -127,9 +133,71 @@ def infecteCells(matrix, m, infected):
 
                 matrix.editCell("░", 0, i, j ,m)
 
+def graphicMatrix(matrix, m, n):
 
-#def saveInfected(coords):
+    graphviz = 'digraph EJEMPLO{\n    node [shape=plaintext];'
+    graphviz += '\n    struct1 [label=<'
+    graphviz += '\n        <TABLE>'
+
+    for i in range(m):
+        graphviz += '\n        	<TR>'
+
+        for j in range(m):
+
+            if matrix.getStatus(i, j, m) == 1:
+
+                graphviz += '\n        	    <td bgcolor="red"></td>'
+
+            elif matrix.getStatus(i, j, m) == 0:
+                graphviz += '\n        	    <td bgcolor="green"></td>'        
+
+        graphviz += '\n        	</TR>'
+            
+    graphviz += '\n        </TABLE>'
+
+    graphviz += '\n    >];'
+    graphviz += '\n}'
+
+    #print(graphviz)
+
+    with open('Gráficas\graphviz.txt', 'w') as file:
+
+            file.write(graphviz)
+
+    os.system('dot.exe -Tpng Gráficas\graphviz.txt -o Gráficas\Período_'+n+'.png')
     
+def graphicInitial(matrix, m):
 
-        
-               
+    graphviz = 'digraph PROYECTO_1{\n    node [shape=plaintext];'
+    graphviz += '\n    struct1 [label=<'
+    graphviz += '\n        <TABLE>'
+
+    for i in range(m):
+        graphviz += '\n        	<TR>'
+
+        for j in range(m):
+
+            if matrix.getStatus(i, j, m) == 1:
+
+                graphviz += '\n        	    <td bgcolor="red"></td>'
+
+            elif matrix.getStatus(i, j, m) == 0:
+                graphviz += '\n        	    <td bgcolor="green"></td>'        
+
+        graphviz += '\n        	</TR>'
+            
+    graphviz += '\n        </TABLE>'
+
+    graphviz += '\n    >];'
+    graphviz += '\n}'
+
+    #print(graphviz)
+
+    with open('Gráficas\graphviz.txt', 'w') as file:
+
+            file.write(graphviz)
+
+    #os.system('dot.exe -Tpng graphviz.txt -o Gráficas\graphviz_',n,'.png')
+    os.system('dot.exe -Tpng Gráficas\graphviz.txt -o Gráficas\Período_0.png')
+    #webbrowser.open('graphviz.png')
+    
