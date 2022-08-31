@@ -62,11 +62,12 @@ def read (filepath):
 
             results = ""
             n = 0   
+            n1 = 0
 
         
             print(cells)
             
-            Pacient.add_to_list( name, age, periods, m, results, n, cells)     
+            Pacient.add_to_list( name, age, periods, m, results, n, n1, cells)     
         
                              
 

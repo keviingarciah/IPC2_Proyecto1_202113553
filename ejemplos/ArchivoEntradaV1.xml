@@ -8,13 +8,29 @@
       <periodos>12</periodos>
       <m>10</m>
       <rejilla>
-         <celda f="1" c="4" />
-         <celda f="2" c="4" />
-         <celda f="3" c="4" />
-         <celda f="2" c="3" />
-         <celda f="2" c="5" />
+         <celda f="3" c="5" />
+         <celda f="4" c="5" />
+         <celda f="5" c="5" />
+         <celda f="4" c="4" />
+         <celda f="4" c="6" />
       </rejilla>
    </paciente>
+
+   <paciente>
+      <datospersonales>
+         <nombre>LUISCOMOTEAMO</nombre>
+         <edad>24</edad>
+      </datospersonales>
+      <periodos>12</periodos>
+      <m>10</m>
+      <rejilla>
+         <celda f="1" c="5" />
+         <celda f="2" c="4" />
+         <celda f="2" c="6" />
+         <celda f="3" c="5" />
+      </rejilla>
+   </paciente>
+
    <paciente>
       <datospersonales>
          <nombre>Vegeta777</nombre>

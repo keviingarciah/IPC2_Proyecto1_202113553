@@ -1,3 +1,8 @@
+from os import startfile, system
+import webbrowser
+import os
+
+
 class Persona:
     def __init__(self, nombre, infectado) -> None:
         self.nombre =  nombre
@@ -59,6 +64,16 @@ class Lista:
         return "Error"
 
 
+    def XD(self, i, j, max):
+        pos = self.rowMajor(j,i,max)
+        aux = self.raiz 
+
+        while aux != None:
+            if aux.pos == pos:
+                return aux.valor
+            aux = aux.siguiente
+        return "Error"
+
 
     def imprimir(self):
         aux = self.raiz
@@ -72,8 +87,40 @@ class Lista:
         return x + y * maxY
 
 
-
-
+#    def graficar(self):
+#
+#
+#        x = input("Ingrese las filas: ")
+#
+#        y = input("Ingrese las columnas: ")
+#
+#
+#
+#        graphviz = 'digraph EJEMPLO{\n    node [shape=plaintext];'
+#        graphviz += '\n    struct1 [label=<'
+#        graphviz += '\n        <TABLE>'
+#
+#        for i in range(int(x)):
+#            graphviz += '\n        	<TR>'
+#
+#            for j in range(int(y)):
+#
+#                self.getPos(i,j,max
+#                graphviz += '\n        	    <td bgcolor="red">line 1</td>'
+#
+#            graphviz += '\n        	</TR>'
+#                
+#
+#
+#
+#        graphviz += '\n        </TABLE>'
+#
+#
+#        graphviz += '\n    >];'
+#        graphviz += '\n}'
+#
+#        print(graphviz)
+#
 
 if __name__ == '__main__':
     print("Ejemplo Row Major")
@@ -94,6 +141,41 @@ if __name__ == '__main__':
 
     lista.imprimir()
     print(lista.getPos(0, 1 ,max))
+
+    print("\n")    
+
+
+
+
+    graphviz = 'digraph EJEMPLO{\n    node [shape=plaintext];'
+    graphviz += '\n    struct1 [label=<'
+    graphviz += '\n        <TABLE>'
+
+    for i in range(max):
+        graphviz += '\n        	<TR>'
+
+        for j in range(max):
+
+            if lista.getPos(i,j,max) != None:
+
+                graphviz += '\n        	    <td bgcolor="red">line 1</td>'
+
+            else:
+                graphviz += '\n        	    <td bgcolor="green">line 1</td>'        
+
+        graphviz += '\n        	</TR>'
+            
+
+    graphviz += '\n        </TABLE>'
+
+    graphviz += '\n    >];'
+    graphviz += '\n}'
+
+    print(graphviz)
+
+    
+
+
 
 
     

@@ -1,0 +1,127 @@
+digraph EJEMPLO{
+    node [shape=plaintext];
+    struct1 [label=<
+        <TABLE>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="red"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="red"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="red"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="red"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        	<TR>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	    <td bgcolor="green"></td>
+        	</TR>
+        </TABLE>
+    >];
+}
