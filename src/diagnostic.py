@@ -7,7 +7,7 @@ def generateXML():
 
     all = Pacient.getResults(all)
 
-    print(all)
+    #print(all)
 
     pacients = ET.Element("pacientes")
 
@@ -49,4 +49,4 @@ def generateXML():
 
     tree = ET.ElementTree(pacients)
     ET.indent(pacients)
-    tree.write("filename.xml", xml_declaration=True, encoding='utf-8')
+    tree.write("Resultados\Resultados.xml", xml_declaration=True, encoding='utf-8')

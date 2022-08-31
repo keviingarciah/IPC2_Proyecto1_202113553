@@ -1,10 +1,12 @@
 
 from object import Pacient, Grids
 from lists import List, Node
-import simulation, diagnostic, main
+import simulation, diagnostic
 import os
 
 def evaluateMatrix( m, matrix, periods, pacient): #next
+
+    graphviz = ""
 
     for n in range(periods):
 
@@ -37,14 +39,16 @@ def evaluateMatrix( m, matrix, periods, pacient): #next
 
         simulation.printPeriods(matrix, m, n)  
         
-        results = Grids.compareGrids(n+1, grid, pacient)     
+        results = Grids.compareGrids(n+1, grid, pacient)   
+
+        graphicMatrix(matrix, m, str(n+1))
+
         if results[0] == "Enfermedad MORTAL":
             
             break
 
         Grids.addGrids(n+1, grid, pacient)  
 
-    graphicMatrix(matrix, m)
 
     print("Periodos: ", results[1], results[2])
 
@@ -129,7 +133,7 @@ def infecteCells(matrix, m, infected):
 
                 matrix.editCell("░", 0, i, j ,m)
 
-def graphicMatrix(matrix, m):
+def graphicMatrix(matrix, m, n):
 
     graphviz = 'digraph EJEMPLO{\n    node [shape=plaintext];'
     graphviz += '\n    struct1 [label=<'
@@ -154,12 +158,46 @@ def graphicMatrix(matrix, m):
     graphviz += '\n    >];'
     graphviz += '\n}'
 
-    print(graphviz)
+    #print(graphviz)
 
-    with open('graphviz.txt', 'w') as file:
+    with open('Gráficas\graphviz.txt', 'w') as file:
 
             file.write(graphviz)
 
-    os.system('dot.exe -Tpng graphviz.txt -o graphviz.png')
+    os.system('dot.exe -Tpng Gráficas\graphviz.txt -o Gráficas\Período_'+n+'.png')
+    
+def graphicInitial(matrix, m):
+
+    graphviz = 'digraph PROYECTO_1{\n    node [shape=plaintext];'
+    graphviz += '\n    struct1 [label=<'
+    graphviz += '\n        <TABLE>'
+
+    for i in range(m):
+        graphviz += '\n        	<TR>'
+
+        for j in range(m):
+
+            if matrix.getStatus(i, j, m) == 1:
+
+                graphviz += '\n        	    <td bgcolor="red"></td>'
+
+            elif matrix.getStatus(i, j, m) == 0:
+                graphviz += '\n        	    <td bgcolor="green"></td>'        
+
+        graphviz += '\n        	</TR>'
+            
+    graphviz += '\n        </TABLE>'
+
+    graphviz += '\n    >];'
+    graphviz += '\n}'
+
+    #print(graphviz)
+
+    with open('Gráficas\graphviz.txt', 'w') as file:
+
+            file.write(graphviz)
+
+    #os.system('dot.exe -Tpng graphviz.txt -o Gráficas\graphviz_',n,'.png')
+    os.system('dot.exe -Tpng Gráficas\graphviz.txt -o Gráficas\Período_0.png')
     #webbrowser.open('graphviz.png')
     
