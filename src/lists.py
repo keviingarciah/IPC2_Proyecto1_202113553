@@ -9,12 +9,7 @@ class Node:
         self.next = None
 
 class List: 
-   #global infected
-   #infected = []
-
-   #global coordinates
-   #coordinates = []
-
+  
     def __init__(self) -> None: 
         self.size = 0
         self.root = None 
@@ -65,7 +60,6 @@ class List:
                 return aux.status
             aux = aux.next
         return "Error"             
-
 
     def rowMajor(self, x, y, maxY):
         return x + y * maxY              

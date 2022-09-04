@@ -15,7 +15,6 @@ def evaluateMatrix( m, matrix, periods, pacient): #next
         for i in range(m):
             for j in range(m):
 
-
                 actualCell = matrix.getCell(i,j,m)
 
                 neighbor1 = matrix.getCell(i-1,j-1,m) 
@@ -39,12 +38,17 @@ def evaluateMatrix( m, matrix, periods, pacient): #next
 
         simulation.printPeriods(matrix, m, n)  
         
-        results = Grids.compareGrids(n+1, grid, pacient)   
+        results = Grids.compareGrids(n+1, grid, pacient)  
+
 
         graphicMatrix(matrix, m, str(n+1))
 
         if results[0] == "Enfermedad MORTAL":
             
+            break
+
+        elif results[0] == "Enfermedad GRAVE":
+
             break
 
         Grids.addGrids(n+1, grid, pacient)  
@@ -199,5 +203,3 @@ def graphicInitial(matrix, m):
 
     #os.system('dot.exe -Tpng graphviz.txt -o Gráficas\graphviz_',n,'.png')
     os.system('dot.exe -Tpng Gráficas\graphviz.txt -o Gráficas\Período_0.png')
-    #webbrowser.open('graphviz.png')
-    
