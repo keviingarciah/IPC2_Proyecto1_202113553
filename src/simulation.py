@@ -1,9 +1,21 @@
 from object import Pacient, Grids
 from lists import Node, List
-import algorithm
+import algorithm, os
 
 
 def simulate(pacient):
+
+    folder = 'Gráficas'
+
+    for f in os.listdir(folder):
+        filep_path = os.path.join(folder, f)
+        os.unlink(filep_path)
+
+    folder = 'Resultados'
+
+    for f in os.listdir(folder):
+        filep_path = os.path.join(folder, f)
+        os.unlink(filep_path)
 
     #print("Se simula: \n")
 
@@ -22,10 +34,7 @@ def simulate(pacient):
 
     periods = Pacient.getPeriods(pacient)
 
-    #print_matrix(matrix, m) #Se impreme y genera la matriz en png
-
-
-  
+    print_matrix(matrix, m) 
 
     algorithm.graphicInitial(matrix, m) 
 

@@ -194,9 +194,10 @@ class Grids:
                         #return status
 
                 else: 
+                    
 
-                    n0 = n   
-                    n1 = n0 - period_repeated
+                    n0 = n
+                    n1 = n - period_repeated
 
                     #print("NO. DE PERIODOS: ", n1, "\n")
 

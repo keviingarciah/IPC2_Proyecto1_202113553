@@ -4,13 +4,14 @@ import load, simulation, diagnostic
 from object import Pacient
 
 
+
 class Menu(tk.Tk):
 
     def __init__(self):
         super().__init__()
 
         self.title("¡Bienvenido!")
-        self.geometry("430x460+600+150")
+        self.geometry("430x380+600+170")
         self.resizable(0,0)
 
         self.frame_1 = tk.Frame(self,width=240, height = 480)
@@ -31,15 +32,12 @@ class Menu(tk.Tk):
         self.button_2_2 = tk.Button(self.frame_2, text="Iniciar Simulación", command = self.simulate)
         self.button_2_2.grid(row=2, column=0, pady=10, padx=20)
 
-        self.button_2_3 = tk.Button(self.frame_2, text="Generar XML", command = self.XML)
-        self.button_2_3.grid(row=3, column=0, pady=10, padx=20)
-
         self.button_2_4 = tk.Button(self.frame_2, text="Salir", command = self.quit)
-        self.button_2_4.grid(row=4, column=0, pady=10, padx=20)
+        self.button_2_4.grid(row=3, column=0, pady=10, padx=20)
 
     def openFile(self):
         
-        filepath = filedialog.askopenfilename(title =  "Carga de Archivo", filetypes=[('all', '*'),('archivo LFP', '*LFP, *lfp'),('archivo CSV', '*CSV, *csv')])
+        filepath = filedialog.askopenfilename(title = "Carga de Archivo", filetypes=[('all', '*')])
         print(filepath)
 
         load.read(filepath)
@@ -53,12 +51,6 @@ class Menu(tk.Tk):
     def simulate(self):
         Simulation(self)
         
-    def XML(self):
-
-        print("Se da el xml") 
-        diagnostic.generateXML()   
-        messagebox.showinfo(message="Se generó el archivo XML.", title="Resultados caragados")  
-
     def exit(self):  
         self.quit()    
 
@@ -71,7 +63,7 @@ class Simulation(tk.Toplevel):
         self.master = master
 
         self.title("Simular")
-        self.geometry("400x280+600+210")
+        self.geometry("400x300+600+210")
         self.resizable(0,0)
         self.protocol("WM_DELETE_WINDOW", self.back_to_main)
 
@@ -93,8 +85,11 @@ class Simulation(tk.Toplevel):
         self.button_o_1 = tk.Button(master=self.frame_o2, text="Simular", command=self.simulate)
         self.button_o_1.grid(row=1, column=1, pady=(10,20), padx=10)
 
-        self.button_o_2 = tk.Button(master=self, text="Regresar", command=self.back_to_main)
+        self.button_o_2 = tk.Button(master=self, text="Generar XML", command=self.XML)
         self.button_o_2.grid(row=2, column=0, pady=(15,20), padx=10)
+
+        self.button_o_3 = tk.Button(master=self, text="Regresar", command=self.back_to_main)
+        self.button_o_3.grid(row=3, column=0, pady=(0,20), padx=10)
 
         self.master.withdraw()
 
@@ -109,6 +104,13 @@ class Simulation(tk.Toplevel):
         
         simulation.simulate(pacient)  
         messagebox.showinfo(message="Se realizó la simulación y se generaron los gráficos.", title="Simulación terminada.") 
+
+    def XML(self):
+
+        pacient = self.combox.get()
+        print("Se da el xml") 
+        diagnostic.generateXML(pacient)   
+        messagebox.showinfo(message="Se generó el archivo XML.", title="Resultados cargados")  
 
 if __name__ == "__main__":
 

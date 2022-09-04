@@ -1,7 +1,8 @@
 import xml.etree.ElementTree as ET
 from object import Pacient
+import webbrowser
 
-def generateXML():
+def generateXML(pacient):
 
     all = []
 
@@ -13,40 +14,43 @@ def generateXML():
 
     for i in range(len(all)):
 
-        pacient= ET.Element("paciente")
-        pacients.append(pacient) 
+        if all[i][0] == pacient:
 
-        dates = ET.Element("datospersonales")
-        pacient.append(dates)
+            pacient= ET.Element("paciente")
+            pacients.append(pacient) 
 
-        name = ET.SubElement(dates, "nombre")
-        name.text = all[i][0]
+            dates = ET.Element("datospersonales")
+            pacient.append(dates)
 
-        age = ET.SubElement(dates, "edad")
-        age.text = str(all[i][1])
+            name = ET.SubElement(dates, "nombre")
+            name.text = all[i][0]
 
-        period = ET.SubElement(pacient, "periodos")
-        period.text = str(all[i][2])
+            age = ET.SubElement(dates, "edad")
+            age.text = str(all[i][1])
 
-        m = ET.SubElement(pacient, "m")
-        m.text = str(all[i][3])
+            period = ET.SubElement(pacient, "periodos")
+            period.text = str(all[i][2])
 
-        result = ET.SubElement(pacient, "resultado")
-        result.text = all[i][4]
+            m = ET.SubElement(pacient, "m")
+            m.text = str(all[i][3])
 
-        if all[i][6] != 0:
-            n = ET.SubElement(pacient, "n")
-            n.text = str(all[i][5])
+            result = ET.SubElement(pacient, "resultado")
+            result.text = all[i][4]
 
-            n1 = ET.SubElement(pacient, "n1")
-            n1.text = str(all[i][6])
+            if all[i][6] != 0:
+                n = ET.SubElement(pacient, "n")
+                n.text = str(all[i][5])
 
-        if all[i][6] != 0:
+                n1 = ET.SubElement(pacient, "n1")
+                n1.text = str(all[i][6])
 
-            n = ET.SubElement(pacient, "n")
-            n.text = str(all[i][5])
+            if all[i][6] == 0:
+
+                n = ET.SubElement(pacient, "n")
+                n.text = str(all[i][5])
 
 
     tree = ET.ElementTree(pacients)
     ET.indent(pacients)
     tree.write("Resultados\Resultados.xml", xml_declaration=True, encoding='utf-8')
+    webbrowser.open('Resultados\Resultados.xml')
