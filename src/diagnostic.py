@@ -1,20 +1,18 @@
 import xml.etree.ElementTree as ET
 from object import Pacient
-import webbrowser
+import webbrowser, os 
 
-def generateXML(pacient):
+def generateXML(pacientt):
 
     all = []
 
     all = Pacient.getResults(all)
 
-    #print(all)
-
     pacients = ET.Element("pacientes")
 
     for i in range(len(all)):
 
-        if all[i][0] == pacient:
+        if all[i][0] == pacientt:
 
             pacient= ET.Element("paciente")
             pacients.append(pacient) 
@@ -49,8 +47,7 @@ def generateXML(pacient):
                 n = ET.SubElement(pacient, "n")
                 n.text = str(all[i][5])
 
-
     tree = ET.ElementTree(pacients)
     ET.indent(pacients)
-    tree.write("Resultados\Resultados.xml", xml_declaration=True, encoding='utf-8')
-    webbrowser.open('Resultados\Resultados.xml')
+    tree.write("Resultados\Resultados_"+pacientt+".xml", xml_declaration=True, encoding='utf-8')
+    webbrowser.open("Resultados\Resultados_"+pacientt+".xml")

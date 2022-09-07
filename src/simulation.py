@@ -11,16 +11,7 @@ def simulate(pacient):
         filep_path = os.path.join(folder, f)
         os.unlink(filep_path)
 
-    folder = 'Resultados'
-
-    for f in os.listdir(folder):
-        filep_path = os.path.join(folder, f)
-        os.unlink(filep_path)
-
-    #print("Se simula: \n")
-
     m = Pacient.getDimension(pacient)
-    #print("Las dimensiones son: ", m, "*", m)
 
     matrix = List()
 
@@ -38,36 +29,30 @@ def simulate(pacient):
 
     algorithm.graphicInitial(matrix, m) 
 
-    #print("\n")
+    results = algorithm.evaluateMatrix(m, matrix, periods, pacient)
 
-    algorithm.evaluateMatrix(m, matrix, periods, pacient)
+    return results
  
 def getInfected(matrix, m, pacient):
 
     cells = Pacient.getCells(pacient)
 
-
-    #print("Las coordenadas son: ", cells, "len de la matriz: ", len(cells))
-
     initial = []
 
     for i in range(len(cells)):
-        #print(cells[i][0], cells[i][1])
-        x = cells[i][0] - 1            #Esto para que quede en coordenadas de la matriz
-        y = cells[i][1] - 1 
+
+        x = cells[i][0]           #Esto para que quede en coordenadas de la matriz
+        y = cells[i][1]
         matrix.editCell("█", 1, x, y ,m) 
 
         coords = [x,y]
         
         initial.append(coords)
 
-
         if i == len(cells)-1:
-            #print("INICIAL:")    
-            #print(initial)
             Grids.addGrids(0, initial, pacient)
 
-    #Grids.addGrids(0, initial, pacient)
+
         
 def print_matrix(matrix, m):
 

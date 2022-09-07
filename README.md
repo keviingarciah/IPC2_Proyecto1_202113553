@@ -8,5 +8,5 @@
 
 **Documentación**
     <ul>
-       <li><a href="https://documenter.getpostman.com/view/20474422/UyrAFx87" target="_blank">:arrow_right: Ensayo</a></li>
+       <li><a href="https://github.com/usac-KeviinGarcia/IPC2_Proyecto1_202113553/blob/main/Documentaci%C3%B3n/Ensayo.pdf" target="_blank">:arrow_right: Ensayo</a></li>
     </ul>

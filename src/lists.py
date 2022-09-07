@@ -1,5 +1,3 @@
-#from object import Pacient
-
 class Node:
 
     def __init__(self, pos=0, value=None, status=None) -> None:

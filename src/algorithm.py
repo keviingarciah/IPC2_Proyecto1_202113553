@@ -6,8 +6,6 @@ import os
 
 def evaluateMatrix( m, matrix, periods, pacient): #next
 
-    graphviz = ""
-
     for n in range(periods):
 
         grid = []
@@ -26,13 +24,9 @@ def evaluateMatrix( m, matrix, periods, pacient): #next
                 neighbor7 = matrix.getCell(i+1,j,m)
                 neighbor8 = matrix.getCell(i+1,j+1,m)
 
-                #print(neighbor1,neighbor2,neighbor3,neighbor4,neighbor5,neighbor6,neighbor7,neighbor8) 
-                
-                #print("Las celulas infectadas son: ", evaluateCells(neighbor1,neighbor2,neighbor3,neighbor4,neighbor5,neighbor6,neighbor7,neighbor8),"\n")
                 sickCells = evaluateCells(neighbor1,neighbor2,neighbor3,neighbor4,neighbor5,neighbor6,neighbor7,neighbor8)
 
                 evaluateSicks(actualCell, sickCells, matrix, m , i, j)
-                #print("Infectado: ", c,"\n")
             
         infecteCells(matrix, m, grid)
 
@@ -53,10 +47,11 @@ def evaluateMatrix( m, matrix, periods, pacient): #next
 
         Grids.addGrids(n+1, grid, pacient)  
 
-
-    print("Periodos: ", results[1], results[2])
+    print("Diagnóstico: "+results[0]+", N: "+str(results[1])+", N1: "+str(results[2]))
 
     Pacient.editResults(pacient, results[0], results[1], results[2])
+
+    return results
 
 
 def evaluateCells(neighbor1,neighbor2,neighbor3,neighbor4,neighbor5,neighbor6,neighbor7,neighbor8):
@@ -95,13 +90,11 @@ def evaluateSicks(actualCell, sickCells, matrix, m, x, y):
 
         if sickCells == 3:
             matrix.editCell(actualCell, 1, x, y ,m) 
-            #print(matrix.getStatus(x,y,m))
 
             return matrix.getStatus(x,y,m)
 
         else:
             matrix.editCell(actualCell, 0, x, y ,m) 
-            #print(matrix.getStatus(x,y,m))
 
             return matrix.getStatus(x,y,m)
 
@@ -109,13 +102,11 @@ def evaluateSicks(actualCell, sickCells, matrix, m, x, y):
 
         if (sickCells == 3) or (sickCells ==2):
             matrix.editCell(actualCell, 1, x, y ,m) 
-            #print(matrix.getStatus(x,y,m))
 
             return matrix.getStatus(x,y,m)
 
         else:
             matrix.editCell(actualCell, 0, x, y ,m)  
-            #print(matrix.getStatus(x,y,m))
 
             return matrix.getStatus(x,y,m)    
 
@@ -130,8 +121,6 @@ def infecteCells(matrix, m, infected):
 
                 coords = [i,j]
                 infected.append(coords)
-               #print(infected)
-
 
             elif matrix.getStatus(i, j, m) == 0:
 
@@ -150,10 +139,10 @@ def graphicMatrix(matrix, m, n):
 
             if matrix.getStatus(i, j, m) == 1:
 
-                graphviz += '\n        	    <td bgcolor="red"></td>'
+                graphviz += '\n        	    <td bgcolor="green"></td>'
 
             elif matrix.getStatus(i, j, m) == 0:
-                graphviz += '\n        	    <td bgcolor="green"></td>'        
+                graphviz += '\n        	    <td bgcolor="white"></td>'        
 
         graphviz += '\n        	</TR>'
             
@@ -161,8 +150,6 @@ def graphicMatrix(matrix, m, n):
 
     graphviz += '\n    >];'
     graphviz += '\n}'
-
-    #print(graphviz)
 
     with open('Gráficas\graphviz.txt', 'w') as file:
 
@@ -183,10 +170,10 @@ def graphicInitial(matrix, m):
 
             if matrix.getStatus(i, j, m) == 1:
 
-                graphviz += '\n        	    <td bgcolor="red"></td>'
+                graphviz += '\n        	    <td bgcolor="green"></td>'
 
             elif matrix.getStatus(i, j, m) == 0:
-                graphviz += '\n        	    <td bgcolor="green"></td>'        
+                graphviz += '\n        	    <td bgcolor="white"></td>'        
 
         graphviz += '\n        	</TR>'
             
@@ -195,11 +182,8 @@ def graphicInitial(matrix, m):
     graphviz += '\n    >];'
     graphviz += '\n}'
 
-    #print(graphviz)
-
     with open('Gráficas\graphviz.txt', 'w') as file:
 
             file.write(graphviz)
 
-    #os.system('dot.exe -Tpng graphviz.txt -o Gráficas\graphviz_',n,'.png')
     os.system('dot.exe -Tpng Gráficas\graphviz.txt -o Gráficas\Período_0.png')

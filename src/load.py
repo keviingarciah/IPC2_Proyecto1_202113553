@@ -5,12 +5,9 @@ from tkinter import messagebox
 def read (filepath):
 
     try:
-
         tree = ET.parse(filepath)
     
         root = tree.getroot()
-        #print("Root:", root)
-        #coords = []
 
         for patient in root: 
 
@@ -24,23 +21,18 @@ def read (filepath):
 
                             if sub_data.tag == "nombre":
 
-                                #print (sub_data.text)
                                 name = sub_data.text
 
                             elif sub_data.tag == "edad":
-
-                                #print (sub_data.text)  
+ 
                                 age = int(sub_data.text)
-                                #age = (sub_data.text)
 
                     elif data.tag == "periodos": 
 
-                        #print (data.text)
                         periods = int(data.text)
 
                     elif data.tag == "m": 
 
-                        #print (data.text)
                         m = int(data.text)
 
                     elif data.tag == "rejilla":
@@ -52,7 +44,6 @@ def read (filepath):
 
                             if sub_data.tag == "celda":
 
-                                #print (sub_data.get('f'), sub_data.get('c'))
                                 f = int(sub_data.get('f'))
 
                                 c = int(sub_data.get('c'))
@@ -61,12 +52,10 @@ def read (filepath):
                                 
                                 cells.append(coords)
 
-
                 results = ""
                 n = 0   
                 n1 = 0
 
-                #print(cells)
                 Pacient.add_to_list( name, age, periods, m, results, n, n1, cells)     
         
                              
